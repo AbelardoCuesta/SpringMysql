@@ -2,6 +2,7 @@ package net.javaguides.springboot.controller;
 
 
 import lombok.AllArgsConstructor;
+import net.javaguides.springboot.dto.UserDto;
 import net.javaguides.springboot.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -19,8 +20,8 @@ public class UserController {
 
 
     @PostMapping
-    public ResponseEntity <User> createUser(@RequestBody User user){
-        User savedUser=userService.createUser(user);
+    public ResponseEntity <UserDto> createUser(@RequestBody UserDto user){
+        UserDto savedUser=userService.createUser(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
@@ -35,4 +36,17 @@ public class UserController {
         List<User> users = userService.getAllUsers();
         return new ResponseEntity<>(users,HttpStatus.OK);
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long userId, @RequestBody User user){
+        user.setId(userId);
+        User updatedUser=userService.updateUser(user);
+        return new ResponseEntity<>(updatedUser,HttpStatus.OK);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable("id") Long userId){
+        userService.deleteUser(userId);
+        return new ResponseEntity<>("User deleted",HttpStatus.OK);
+    };
 }
