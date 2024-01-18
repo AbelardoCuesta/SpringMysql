@@ -3,13 +3,17 @@ package net.javaguides.springboot.controller;
 
 import lombok.AllArgsConstructor;
 import net.javaguides.springboot.dto.UserDto;
+import net.javaguides.springboot.exception.ErrorDetails;
+import net.javaguides.springboot.exception.ResourceNotFoundException;
 import net.javaguides.springboot.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import net.javaguides.springboot.entity.User;
+import org.springframework.web.context.request.WebRequest;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -49,4 +53,7 @@ public class UserController {
         userService.deleteUser(userId);
         return new ResponseEntity<>("User deleted",HttpStatus.OK);
     };
+
+
+
 }
