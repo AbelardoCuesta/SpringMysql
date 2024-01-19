@@ -1,5 +1,6 @@
 package net.javaguides.springboot.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +17,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(description = "User DTO information")
 public class UserDto {
 
     private Long id;

@@ -1,6 +1,8 @@
 package net.javaguides.springboot.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import net.javaguides.springboot.dto.UserDto;
@@ -17,13 +19,20 @@ import org.springframework.web.context.request.WebRequest;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
+
 @RestController
 @AllArgsConstructor
+@Tag(name="CRUD Rest Apis User",
+        description="Create, Update, Delete, Put")
 @RequestMapping("api/users")
 public class UserController {
     private UserService userService;
 
-
+    @Operation(
+            summary = "Create user",
+            description = "It is for creating users"
+    )
     @PostMapping
     public ResponseEntity <UserDto> createUser(@Valid @RequestBody UserDto user){
         UserDto savedUser=userService.createUser(user);
